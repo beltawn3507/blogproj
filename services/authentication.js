@@ -4,6 +4,7 @@ const secret ="ksnkdnkjndfkjnhahahalala";
 function generateusertoken(user){
     const payload={
         _id:user._id,
+        name:user.fullName,
         email:user.email,
         profileimageurl:user.profileimageurl,
         role:user.role
