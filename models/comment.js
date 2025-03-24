@@ -1,15 +1,12 @@
 const {Schema,model}=require("mongoose");
-const blogschema= new Schema({
-    title:{
-        type:String,
-        required:true
-    },
+const commentschema= new Schema({
     content:{
         type:String,
         required:true
     },
-    coverImageUrl:{
-        type:String,
+    blogid:{
+        type:Schema.Types.ObjectId,
+        ref:'blog'
     },
     createdby:{
         type:Schema.Types.ObjectId,
@@ -17,6 +14,6 @@ const blogschema= new Schema({
     }
 },{timestamps:true})
 
-const Blog=model("blog",blogschema);
+const Comment=model("comment",commentschema);
 
-module.exports=Blog;
+module.exports=Comment;
