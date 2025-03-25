@@ -27,19 +27,26 @@ app.use(checkforauthenticationcookie("token"));
 //view
 app.set("view engine","ejs");
 app.set("views",path.resolve("./view"));
+app.use((err, req, res, next) => {
+    console.error("Unhandled error:", err);
+    res.status(500).send("Internal Server Error");
+});
 
 app.get("/",async (req,res)=>{
-    const allblogs=await Blog.find({});
+    try {
+        const allblogs=await Blog.find({});
     res.render("home",{
         user:req.user,
         blog:allblogs,
     });
+    } catch (error) {
+        next(err);
+    }
 })
+
+
 app.use("/user",userroute);
 app.use("/blog",useblogroute);
-
-
-
 
 
 app.listen(PORT,()=>{console.log(`server started on port ${PORT}` )})

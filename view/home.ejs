@@ -8,11 +8,11 @@
     <%- include('./partials/nav.ejs') %>
     
     <div class="container mt-3 ">
-    <div class="row row-cols-4 ">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 ">
    <% blog.forEach(blo => { %>
-    <div class="col">
-    <div class="card " style="width: 18rem;">
-        <img src="<%= blo.coverImageUrl %>" class="card-img-top" alt="..." style="height: 150px;">
+    <div class="col mb-3">
+    <div class="card " >
+        <img src="<%= blo.coverImageUrl %>" class="card-img-top img-fluid" alt="..." >
         <div class="card-body">
           <h5 class="card-title"><%= blo.title %></h5>
           <a href="/blog/<%= blo._id %>" class="btn btn-primary">View</a>
