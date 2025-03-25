@@ -44,7 +44,5 @@ This is a **full-stack blogging platform** built with **Node.js, Express, MongoD
 - **Cookie-parser** – For handling user authentication  
 - **Mongoose** – ORM for MongoDB  
 
----
-
-## Project Structure  
+-- 
 
