@@ -35,6 +35,8 @@ app.use((err, req, res, next) => {
 app.get("/",async (req,res)=>{
     try {
         const allblogs=await Blog.find({});
+        console.log("blog",typeof(allblogs[0].createdby));
+        if(req.user){console.log("req.user",req.user);}
     res.render("home",{
         user:req.user,
         blog:allblogs,
@@ -47,6 +49,8 @@ app.get("/",async (req,res)=>{
 
 app.use("/user",userroute);
 app.use("/blog",useblogroute);
+
+// console.log(req.user);
 
 
 app.listen(PORT,()=>{console.log(`server started on port ${PORT}` )})

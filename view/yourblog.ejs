@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Home Page</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    
+    <div class="container mt-3 ">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 ">
+   <% blog.forEach(blo => { %>
+    <% if (blo.createdby._id.toString() === user._id) { %>
+        <div class="col mb-3">
+            <div class="card " >
+                <img src="<%= blo.coverImageUrl.startsWith('/') ? blo.coverImageUrl : '/' + blo.coverImageUrl %>" class="card-img-top img-fluid" alt="..." >
+                <div class="card-body">
+                  <h5 class="card-title"><%= blo.title %></h5>
+                  <a href="/blog/<%= blo._id %>" class="btn btn-primary">View</a>
+                </div>
+              </div>
+            </div>
+    <% } %>
+   <% }) %>    
+  </div>
+    </div>
+
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>

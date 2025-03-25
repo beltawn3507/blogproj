@@ -24,13 +24,24 @@ router.get("/add-new",(req,res)=>{
     });
 })
 
+router.get("/myblog",async(req,res)=>{
+   try {
+     const allblogs=await Blog.find({}).populate("createdby");
+     console.log(allblogs);
+     console.log("agaghaghahja",req.user);
+     res.render("yourblog",{
+       user:req.user,
+       blog:allblogs,
+       });
+} catch (error) {
+    next(err);
+}
+})
 
 router.get('/:id',async (req,res)=>{
   //complete user
   const blog= await Blog.findById(req.params.id).populate("createdby");
   const comment=await Comment.find({blogid:req.params.id}).populate("createdby");
-  console.log(comment);
-  
   return res.render("blog",{
     user:req.user,
     blog:blog,
@@ -45,7 +56,7 @@ router.post("/",upload.single("coverImage"),async (req,res)=>{
        title,
        content,
        createdby:req.user._id,
-       coverImageUrl:`uploads/${req.file.filename}`
+       coverImageUrl:`/uploads/${req.file.filename}`
   })
   return res.redirect(`/blog/${blog._id}`);
 })
