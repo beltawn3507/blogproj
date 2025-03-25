@@ -42,7 +42,7 @@ app.get("/",async (req,res)=>{
         blog:allblogs,
     });
     } catch (error) {
-        next(err);
+        next(error);
     }
 })
 
